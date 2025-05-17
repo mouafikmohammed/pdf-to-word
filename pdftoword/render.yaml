@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: pdftoword
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+    buildCommand: |
+      apt-get update && apt-get install -y build-essential cargo
+      pip install -r requirements.txt
+    startCommand: gunicorn pdftoword.wsgi:application
